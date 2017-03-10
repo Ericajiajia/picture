@@ -74,29 +74,23 @@ window.onload = function () {
         if (img.tagName === "IMG") {
             var parent = img.parentNode;
             var boxRect = parent.getBoundingClientRect();
-            var row = parent.getAttribute("rowNum");
-            if(row != lastRow) {
-                scrollTo(0, parent.offsetTop + boxRect.height / 2);// 自动移动到合适位置
+            if(parent.getAttribute("rowNum") != lastRow) {
+                scrollTo(0, parent.offsetTop + boxRect.height / 2);// 滚动到适当位置
             }
-            // 填充详情块的信息
-            var d = showBox.children;
-            d[0].children[0].setAttribute("src", img.getAttribute("src"));
-            d[1].children[0].innerHTML = img.title;
-            // 图片向上重新布局
+            showBox.children[0].children[0].setAttribute("src", img.getAttribute("src"));
+            showBox.children[1].children[0].innerHTML = img.title;
             if(boolean)
                 move(0,parent.nextSibling,"translate3d(0,0,0)");
             showBox.style.opacity = 1;
-            showBox.style.top = parent.offsetTop + boxRect.height + 15 + "px";//!!!!!
+            showBox.style.top = parent.offsetTop + boxRect.height + 15 + "px";
             boolean = true;
             move(1,parent,"translate3d(0,330px,0)");
-            lastRow = row;
+            lastRow = parent.getAttribute("rowNum");
         }
         else {
             var c = main.children;
-            // 隐藏详情块
             showBox.style.opacity = 0;
             boolean = false;
-            // 重排图片布局
             for(var i = 1; len = c.length,i < len;i ++) {
                 c[i].style.transform = "translate3d(0,0,0)";
             }
@@ -119,7 +113,7 @@ window.onload = function () {
         }
     }
 
-    window.onscroll = function () {
+    window.onscroll = function () {//这是一个实时函数，一旦触发就会调用
         var gap = (document.body.clientHeight-document.body.scrollTop);
         if(gap <=1200) {
             var array = div_array(pictures.length);
