@@ -5,51 +5,9 @@ window.onload = function () {
     var showBox = document.getElementById("showBox");
     var height = window.innerHeight / 3;
     var lastRow = 0;
-    var boolean = false;
+    var boolean = false;//判断showBox是否显现
 
-
-
-    function render(num) {
-        var row=0;//记录第几行
-        var picIndex=0;//图片索引值；
-        var rowNum=0;//每行图片个数；
-        var roWidth=0;//每行宽度
-        var picNum=0;//当前图片数
-        var Array = [];
-        var div = document.createElement("div");
-        div.setAttribute("class", "box");
-        while (picNum < num)
-        {
-            div.appendChild(createImg(picIndex));
-            rowNum++;
-            roWidth += pictures[picIndex].width * (height / pictures[picIndex].height)+10;
-            if (nextRow(roWidth, picIndex))
-            {//判断加上图片后是否要换行
-                heightChange(div,roWidth / window.innerWidth );//调整高度
-                div.setAttribute("rowNum", row++);
-                Array.push(div);
-                main.appendChild(div);
-                roWidth = rowNum = 0;
-                div = document.createElement("div");
-                div.setAttribute("class", "box");
-            }
-            picIndex = ++picNum % pictures.length;//每次循环从头开始；
-        }
-        return Array;
-    }
-
-
-    var heightChange=function(div, wid)//每行都是一个Div,每行都看成一个整体，集体调整高度。
-    {
-        var child=div.children;
-        for(var i=0;i<child.length;i++) {
-            child[i].height/=wid;
-        }
-    }
-
-    render(pictures.length);
-
-    function createImg(picIndex) {//创建img标签
+   var createImg=function(picIndex) {//创建img标签
         var imgTag = document.createElement("img");
         imgTag.setAttribute("src", pictures[picIndex].src);
         imgTag.setAttribute("height", height + "px");
@@ -59,13 +17,56 @@ window.onload = function () {
     }
 
     //换行代码
-    function nextRow(roWidth, picIndex) {
+    var nextRow=function(picIndex,roWidth) {
         var temp = pictures[picIndex];
         if ( roWidth + temp.width * (height / temp.height)>= main.getBoundingClientRect().width) {
             return true;
         }
         return false;
     }
+
+    var heightChange=function(div, wid)//每行都是一个Div,每行都看成一个整体，集体调整高度。
+    {
+        var child=div.children;
+        for(var i=0;i<child.length;i++) {
+            child[i].height/=wid;
+        }
+    }
+
+
+   var div_array=function(length) {
+        var row=0;//记录行数
+        var picIndex=0;//图片索引值
+        var rowNum=0;//每行图片个数
+        var picNum=0;//当前图片数
+        var roWidth=0;//每行宽度
+        var Array = [];//div的数组
+        var bool;//判断事件是否会发生
+        var div = document.createElement("div");
+        div.setAttribute("class", "box");
+        while (length>picNum)
+        {
+            div.appendChild(createImg(picIndex));
+            roWidth= roWidth+pictures[picIndex].width * (height / pictures[picIndex].height);
+            roWidth+=10;
+            rowNum++;
+            bool=nextRow( picIndex,roWidth);
+            if (bool)
+            {
+                heightChange(div,roWidth / window.innerWidth );//调整高度
+                div.setAttribute("rowNum", row++);//添加行数
+                Array.push(div);
+                main.appendChild(div);
+                div = document.createElement("div");
+                div.setAttribute("class", "box");
+                roWidth = rowNum = 0;
+            }
+            picIndex = ++picNum % pictures.length;//每次循环从头开始；
+        }
+        return Array;
+    }
+
+    div_array(pictures.length);
 
 
     main.addEventListener("click", function (e) {
@@ -122,11 +123,11 @@ window.onload = function () {
         var clientHeight = document.body.clientHeight;
         var clientTop = document.body.scrollTop;
         var gap = (clientHeight - clientTop);
-        if(gap <= 700) {
-            var rendered = render(pictures.length);
+        if(gap <=900) {
+            var array = div_array(pictures.length);
             if(boolean) {
-                for(var i = 0; len = rendered.length, i < len;i ++) {
-                    rendered[i].style.transform = "translate3d(0,350px,0)";
+                for(var i = 0; len = array.length, i < len;i ++) {
+                    array[i].style.transform = "translate3d(0,350px,0)";
                 }
             }
         }
