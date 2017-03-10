@@ -69,14 +69,14 @@ window.onload = function () {
     div_array(pictures.length);
 
 
-    main.addEventListener("click", function (e) {
-        var img = e.target;
+    main.addEventListener("click", function (eventy) {
+        var img = eventy.target;
         if (img.tagName === "IMG") {
-            var box = img.parentNode;
-            var box_rect = box.getBoundingClientRect();
-            var row = box.getAttribute("data-row");
+            var parent = img.parentNode;
+            var boxRect = parent.getBoundingClientRect();
+            var row = parent.getAttribute("rowNum");
             if(row != lastRow) {
-                scrollTo(0, box.offsetTop + box_rect.height / 2);// 自动移动到合适位置
+                scrollTo(0, parent.offsetTop + boxRect.height / 2);// 自动移动到合适位置
             }
             // 填充详情块的信息
             var d = showBox.children;
@@ -84,11 +84,11 @@ window.onload = function () {
             d[1].children[0].innerHTML = img.title;
             // 图片向上重新布局
             if(boolean)
-                move(0,box.nextSibling,"translate3d(0,0,0)");
+                move(0,parent.nextSibling,"translate3d(0,0,0)");
             showBox.style.opacity = 1;
-            showBox.style.top = box.offsetTop + box_rect.height + 15 + "px";//!!!!!
+            showBox.style.top = parent.offsetTop + boxRect.height + 15 + "px";//!!!!!
             boolean = true;
-            move(1,box,"translate3d(0,330px,0)");
+            move(1,parent,"translate3d(0,330px,0)");
             lastRow = row;
         }
         else {
@@ -120,14 +120,12 @@ window.onload = function () {
     }
 
     window.onscroll = function () {
-        var clientHeight = document.body.clientHeight;
-        var clientTop = document.body.scrollTop;
-        var gap = (clientHeight - clientTop);
-        if(gap <=900) {
+        var gap = (document.body.clientHeight-document.body.scrollTop);
+        if(gap <=1200) {
             var array = div_array(pictures.length);
             if(boolean) {
                 for(var i = 0; len = array.length, i < len;i ++) {
-                    array[i].style.transform = "translate3d(0,350px,0)";
+                    array[i].style.transform = "translate3d(0,330px,0)";
                 }
             }
         }
