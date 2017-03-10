@@ -7,31 +7,31 @@ window.onload = function () {
     var lastRow = 0;
     var boolean = false;//判断showBox是否显现
 
-   var createImg=function(picIndex) {//创建img标签
+   var createImg=function(picIndex) {
         var imgTag = document.createElement("img");
         imgTag.setAttribute("src", pictures[picIndex].src);
         imgTag.setAttribute("height", height + "px");
         imgTag.title = pictures[picIndex].title;
         imgTag.alt = pictures[picIndex].title;
         return imgTag;
-    }
+    }//创建img标签
 
-    //换行代码
+
     var nextRow=function(picIndex,roWidth) {
         var temp = pictures[picIndex];
         if ( roWidth + temp.width * (height / temp.height)>= main.getBoundingClientRect().width) {
             return true;
         }
         return false;
-    }
+    }//换行代码
 
-    var heightChange=function(div, wid)//每行都是一个Div,每行都看成一个整体，集体调整高度。
+    var heightChange=function(div, wid)
     {
         var child=div.children;
         for(var i=0;i<child.length;i++) {
             child[i].height/=wid;
         }
-    }
+    }//每行都是一个Div,每行都看成一个整体，集体调整高度。
 
 
    var div_array=function(length) {
@@ -97,9 +97,19 @@ window.onload = function () {
         }
     })
 
+    var scrollTo=function(x,y) {
+        var request=function() {
+            window.scrollBy(0,window.scrollY - y> 0 ? -5 : 5);
+            if(Math.abs(window.scrollY - y) > 5) {//控制位置
+                var cancel = requestAnimationFrame(request);
+            }
+            else
+                cancelAnimationFrame(cancel);
+        }
+        requestAnimationFrame(request);
+    }//滚动到正确位置
 
-
-    var move=function(bool,box,property) {//判断盒子模型应该向上平移还是向下平移。
+    var move=function(bool,box,property) {
         var boxy = box;
         while(typeof boxy == "object") {
             boxy = bool ? box.nextSibling : box.previousSibling;
@@ -111,9 +121,9 @@ window.onload = function () {
                 return false;
             }
         }
-    }
+    }//判断盒子移动方向。
 
-    window.onscroll = function () {//这是一个实时函数，一旦触发就会调用
+    window.onscroll = function () {
         var gap = (document.body.clientHeight-document.body.scrollTop);
         if(gap <=1200) {
             var array = div_array(pictures.length);
@@ -123,19 +133,7 @@ window.onload = function () {
                 }
             }
         }
-    }
-
-    var scrollTo=function(x,y) {//滚动到正确位置
-        var request=function() {
-            window.scrollBy(0,window.scrollY - y> 0 ? -5 : 5);
-            if(Math.abs(window.scrollY - y) > 5) {//控制位置
-                var cancel = requestAnimationFrame(request);
-            }
-            else
-                cancelAnimationFrame(cancel);
-        }
-        requestAnimationFrame(request);
-    }
+    }//这是一个实时函数，一旦触发就会调用
 
     window.onresize = function () {setTimeout("location.reload()",100);}//改变视图的时候重新排版,重新运行一遍程序
 
