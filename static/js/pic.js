@@ -16,127 +16,127 @@ var pictures =           //命名很多图片太麻烦了，直接放入数组�
     },
     {
         src:"static/pictures/3.jpg",
-        title:"Flying bigfish",
+        title:"枫落人间",
         width:1024,
         height:783
     },
     {
         src:"static/pictures/4.jpg",
-        title:"Green woods car",
+        title:"美丽多肉",
         width:356,
         height:300
     },
     {
         src:"static/pictures/5.jpg",
-        title:"Fancy forest",
+        title:"蓝色多肉",
         width:349,
         height:300
     },
     {
         src:"static/pictures/6.jpg",
-        title:"Summer night",
+        title:"萤火飞舞 ",
         width:1200,
         height:800
     },
     {
         src:"static/pictures/7.jpg",
-        title:"isolate isle",
+        title:"回眸一笑",
         width:690,
         height:415
     },
     {
         src:"static/pictures/8.jpg",
-        title:"Jinja",
+        title:"披着羊皮的狼",
         width:472,
         height:300
     },
     {
         src:"static/pictures/9.jpg",
-        title:"Sky",
+        title:"出水玫瑰",
         width:1366,
         height:768
     },
     {
         src:"static/pictures/10.jpg",
-        title:"Like rwby",
+        title:"聆听自然",
         width:690,
         height:389
     },
     {
         src:"static/pictures/12.jpg",
-        title:"Sky and earth",
+        title:"腊月寒梅",
         width:700,
         height:435
     },
     {
         src:"static/pictures/13.jpg",
-        title:"Lorem",
+        title:"一行白鹭上青天",
         width:650,
         height:427
     },
     {
         src:"static/pictures/14.jpg",
-        title:"Lorem",
+        title:"凌风云海",
         width:1440,
         height:900
     },
     {
         src:"static/pictures/15.jpg",
-        title:"Lorem",
+        title:"水天一色",
         width:1920,
         height:1080
     },
     {
         src:"static/pictures/16.jpg",
-        title:"Lorem",
+        title:"萌宠",
         width:1920,
         height:1080
     },
     {
         src:"static/pictures/17.jpg",
-        title:"Lorem",
+        title:"I Love You",
         width:500,
         height:350
     },
     {
         src:"static/pictures/18.jpg",
-        title:"Lorem",
+        title:"美食诱惑",
         width:1000,
         height:667
     },
     {
         src:"static/pictures/19.jpg",
-        title:"Lorem",
+        title:"雨后枫叶",
         width:3072,
         height:1728
     },
     {
         src:"static/pictures/20.jpg",
-        title:"Lorem",
+        title:"山间小道",
         width:1412,
         height:882
     },
     {
         src:"static/pictures/22.jpg",
-        title:"Lorem",
+        title:"一水一滴一世界",
         width:478,
         height:300
     },
     {
         src:"static/pictures/23.jpg",
-        title:"Lorem",
+        title:"海边度假",
         width:1440,
         height:900
     },
     {
         src:"static/pictures/24.jpg",
-        title:"Lorem",
+        title:"春寒料峭",
         width:1024,
         height:768
     },
     {
         src:"static/pictures/25.jpg",
-        title:"Lorem",
+        title:"波光粼粼",
         width:1024,
         height:768
     }];
